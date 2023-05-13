@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
+import { HousingService } from '../housing.service';
 import { HousingLocation } from '../housinglocation';
 
 @Component({
@@ -16,23 +17,14 @@ import { HousingLocation } from '../housinglocation';
     </form>
   </section>
   <section class="results">
-    <app-housing-location></app-housing-location>
+    <app-housing-location *ngFor = "let housingLocation of housingLocationList" [housingLocation] = 'housingLocation'></app-housing-location>
   </section>
   `,
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  housingLocation: HousingLocation = {
-    id: 9999,
-    name: 'Test Home',
-    city: 'Test city',
-    state: 'ST',
-    photo: 'assets/example-house.jpg',
-    availableUnits: 99,
-    wifi: true,
-    laundry: false,
-  };
-  constructor(){
-  // console.log(this.housingLocation);
+  housingLocationList: HousingLocation[]= [];
+  constructor(private housingService: HousingService) {
+    this.housingLocationList = this.housingService.getAllHousingLocations();
   }
 }
