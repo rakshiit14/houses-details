@@ -100,7 +100,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
       text-transform: uppercase;
       font-size: 12pt;
     }
-    input {housingLocationList
+    input.housingLocationList {
       font-size: 16pt;
       margin-bottom: 15px;
       padding: 10px;
